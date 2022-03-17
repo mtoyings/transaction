@@ -1,0 +1,110 @@
+History::insert(...)
+
+Add one node at a time
+
+takes perimeter pointer to a transaction adn the nadd to linked list
+
+add one node at a time
+
+function to call to create teh entire linked list is read History
+
+Histroy::read_history >> read from text file one a time and then call insert each time
+(is going to read transaction from teh file one transaction at a time and call insert once for each transaction, in order to build a complete linked list)
+
+At the very start of linked-list what is the desired output aned what are the inpits for the insert fnc?
+
+state of linked list at the beginning
+input: 
+p_head -> nullptr (within history)
+also getting pointer to a dynamically allocated transaction (ie newnode) that is to be inserted
+
+p_new_trans -> transaction  
+                p_next -> nullptr
+
+
+output:
+
+    the linked list will constain this single new node
+
+Historyp_head -> transaction
+                p_next -> nullptr
+
+
+p_new_trans is just a local parameter so not concerned with its final state
+
+After we execure this -> p_head, both p_head and p_new_trans are pointing to the transaction to be inserted
+
+
+
+For subsequen calss to insert(...), what are the inputs and what is the desired output?
+
+input:
+
+    thie linkled list may contaoint one or more transactions 
+
+    we are getting a pointer to a dynamically allocated transaction ie new node that is to be inserted
+
+output:
+
+the new transaction has been added to the END of hte linked list
+
+What is the key thing to figure out in order to insert a node in this case
+(one or more transactions)
+
+we need to find the correct p_next pointer to modify
+
+each node has unique pointer called p_next
+
+the key to finding th correct p_next pointer is to use another pointer to tracers the linked-list until we find the correct p_next pointer
+
+
+we can get the address of the next transaction by calling p_traverse -> get_next()
+
+
+p_traverse = p_traverse
+
+reminder: the arrow notation means to dereference the pointer and the naccess a memeber of the object
+
+so
+p_tranverse-> getnext() == (*p_traverse).getr_next()
+
+
+
+//NEW//
+
+p_head -> 6 -> 8 -> 4 -> 5 -> 7 -> 1 -> nullptr
+
+We are going to create a new linked list, using the existing nodes. Note that this means we are not going to 
+create or delete any nodes
+
+We are going to use new head pointer for this new linked list
+p_head_new -> nullptr
+
+overall process:
+*repeat until all nodes have been transferred
+*isolate the front node from the unsorted linked list, while holding onto the rest of the linked list
+*add/insert the isolated node to the new linked list in its appropirate/sorted location
+
+In order to isolate the front node, we are going to need another pointer to hold noto this front node.
+Let that pointer be p_front
+
+p_head 1 4 5 6 7 8 nullptr
+p_front -> nullptr
+p_head_new -> nullptr
+
+
+*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+
+Transaction *p_front{};
+Transaction *p_head_new{};
+
+p_front = p_head;
+p_head = p_head->get_next();
+p_front->set_next(nullptr); //set the next to be nullptr aka break the linked list
+//should be arrow bc p_head is a pointer need to deref first arrow deref
+
+if(p_head_new == nullptr){
+    p_head_new = p_front;
+    p_front = nullptr;
+}
+
